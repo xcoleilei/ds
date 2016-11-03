@@ -26,7 +26,7 @@
 					console.info(r);
 					var x = e.clientX;
 					var y = e.clientY;
-					$img = $('<img src="img/'+r+'.png" style="top:'+(y-25)+'px;left:'+(x-25)+'px"  ondragstart="return false" />');
+					$img = $('<img src="'+r+'.png" style="top:'+(y-25)+'px;left:'+(x-25)+'px"  ondragstart="return false" />');
 					$('body').append($img);
 					$img.animate({
 						top:(y-325)+'px',
