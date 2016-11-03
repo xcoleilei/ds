@@ -1,1 +1,44 @@
-hello world
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>拖动效果</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			body{background-color: #000;}
+			img{height: 70px;width: 70px;position: absolute;}
+			h1{width: 500px;height: 50px;line-height: 50px;color: #fff;margin: 0 auto;}
+		</style>
+	</head>
+	<body>
+		<h1>按下鼠标拖动</h1>
+	</body>
+	<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var index = -1;
+			$(document).mousedown(function(){
+				$(this).bind('mousemove',function(e){
+					index++;
+					//index = index % 5;//index &= 5;
+					var r = Math.floor(index/4);
+					r %= 4;
+					console.info(r);
+					var x = e.clientX;
+					var y = e.clientY;
+					$img = $('<img src="img/'+r+'.png" style="top:'+(y-25)+'px;left:'+(x-25)+'px"  ondragstart="return false" />');
+					$('body').append($img);
+					$img.animate({
+						top:(y-325)+'px',
+						width:0,
+						height:0
+					},1500,function(){
+						$(this).remove();
+					});
+				});
+			}).mouseup(function(){
+				$(this).unbind('mousemove');
+			});
+		});
+	</script>
+</html>
