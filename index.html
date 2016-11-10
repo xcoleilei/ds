@@ -5,31 +5,50 @@
 		<title>拖动效果</title>
 		<style type="text/css">
 			*{margin: 0;padding: 0;}
-			body{background-color: #000;}
+			body{background-color: #232323;}
 			img{height: 70px;width: 70px;position: absolute;}
+			.hezi0{height: 50px;width: 50px;border: 10px solid #F00;border-radius: 50px;position: absolute;}
+			.hezi1{height: 50px;width: 50px;border: 10px solid #F60;border-radius: 50px;position: absolute;}
+			.hezi2{height: 50px;width: 50px;border: 10px solid #FF0;border-radius: 50px;position: absolute;}
+			.hezi3{height: 50px;width: 50px;border: 10px solid #0C0;border-radius: 50px;position: absolute;}
+			.hezi4{height: 50px;width: 50px;border: 10px solid #699;border-radius: 50px;position: absolute;}
+			.hezi5{height: 50px;width: 50px;border: 10px solid #06C;border-radius: 50px;position: absolute;}
+			.hezi6{height: 50px;width: 50px;border: 10px solid #909;border-radius: 50px;position: absolute;}
+			.ceshi{-webkit-animation: rotate 1s infinite linear;}
+			@keyframes rotate{
+				from { -webkit-transform: rotateY(0) }
+      			to   { -webkit-transform: rotateY(360deg) }
+			}
 			h1{width: 500px;height: 50px;line-height: 50px;color: #fff;margin: 0 auto;}
 		</style>
 	</head>
 	<body>
 		<h1>按下鼠标拖动</h1>
+		<!--<div class="hezi0 ceshi" style="left: 50px;"></div>
+		<div class="hezi1 ceshi" style="left: 100px;"></div>
+		<div class="hezi2 ceshi" style="left: 150px;"></div>
+		<div class="hezi3 ceshi" style="left: 200px;"></div>
+		<div class="hezi4 ceshi" style="left: 250px;"></div>
+		<div class="hezi5 ceshi" style="left: 300px;"></div>
+		<div class="hezi6 ceshi" style="left: 350px;"></div>-->
 	</body>
-	<script type="text/javascript" src="jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 	<script type="text/javascript">
 		$(function(){
 			var index = -1;
 			$(document).mousedown(function(){
 				$(this).bind('mousemove',function(e){
 					index++;
-					//index = index % 5;//index &= 5;
-					var r = Math.floor(index/4);
-					r %= 4;
+					var r = Math.floor(index/3);
+					r %= 7;
 					console.info(r);
 					var x = e.clientX;
 					var y = e.clientY;
-					$img = $('<img src="'+r+'.png" style="top:'+(y-25)+'px;left:'+(x-25)+'px"  ondragstart="return false" />');
-					$('body').append($img);
-					$img.animate({
-						top:(y-325)+'px',
+					//$img = $('<img src="img/'+r+'.png" style="top:'+(y-35)+'px;left:'+(x-35)+'px"  ondragstart="return false" />');
+					$div = $('<div class="hezi'+r+' ceshi" style="top:'+(y-25)+'px;left:'+(x-25)+'px" />');
+					$('body').append($div);
+					$div.animate({
+						top:(y-425)+'px',
 						width:0,
 						height:0
 					},1500,function(){
